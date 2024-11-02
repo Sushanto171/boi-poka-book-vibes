@@ -8,7 +8,7 @@ const Book = ({ book }) => {
 <Link to={`/book/${bookId}`} >
     <div onClick={bookDetailHandler} className="card bg-base-100 shadow-xl p-8 border h-full flex flex-col justify-between gap-6">
       <figure className="bg-gray-100 py-8 rounded-lg flex justify-center">
-        <img className="w-36 h-44 rounded-sm" src={image} alt={bookName} />
+        <img className="w-36 h-44 rounded-sm hover:scale-105 duration-300" src={image} alt={bookName} />
       </figure>
       <div className="flex flex-col justify-around ">
         <div className="flex-grow">

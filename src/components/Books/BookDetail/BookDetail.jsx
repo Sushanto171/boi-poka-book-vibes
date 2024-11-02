@@ -1,5 +1,7 @@
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
-
+import CheckedDb from "../../Localstorage/LocalStorage";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const BookDetail = () => {
   const navigate = useNavigate();
   const { bookId } = useParams();
@@ -19,7 +21,10 @@ const BookDetail = () => {
     totalPages,
     yearOfPublishing,
   } = book;
-
+const readBtnHandler = ()=>{
+  CheckedDb(bookId);
+  toast.success("added book in read list.")
+}
   const detail = (title, value) => {
     return (
       <div className="grid grid-cols-3">
@@ -28,7 +33,6 @@ const BookDetail = () => {
       </div>
     );
   };
-  console.log(detail);
   return (
     <div className="space-y-5 my-10">
       <div className="text-center">
@@ -44,7 +48,7 @@ const BookDetail = () => {
               className="w-[425px] md:h-[564px] rounded-lg shadow-2xl"
             />
           </div>
-          <div className="flex flex-col justify-between">
+          <div className="flex flex-col justify-between px-10">
             <h1 className="text-5xl font-bold">{bookName}</h1>
             <p>By: {author}</p>
             <p className="border-y-2">Fiction</p>
@@ -63,10 +67,11 @@ const BookDetail = () => {
             {detail("Year of Publishing:", yearOfPublishing)}
             {detail("Rating:", rating)}
             <div>
-              <button className="btn btn-outline btn-success mr-10">
+              <button onClick={readBtnHandler} className="btn btn-outline btn-success mr-10">
                 Read
               </button>
               <button className="btn btn-success">Wish List</button>
+              <ToastContainer />
             </div>
           </div>
         </div>
